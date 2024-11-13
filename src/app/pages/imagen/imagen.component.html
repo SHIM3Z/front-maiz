@@ -8,6 +8,17 @@
 </div>
 
 
+<!-- app.component.html -->
+<div>
+  <h1>Subir Imagen</h1>
+  <input type="file" (change)="onFileChange($event)" />
+  <button (click)="uploadImage()">Subir Imagen</button>
+
+  <h2>Imagen Procesada</h2>
+  <img *ngIf="imageBase64" [src]="'data:image/png;base64,' + imageBase64" alt="Imagen Procesada" />
+</div>
+
+
 <!-- <div class="container mt-5">
   <h2 class="text-center">Image Upload and Prediction</h2>
 
