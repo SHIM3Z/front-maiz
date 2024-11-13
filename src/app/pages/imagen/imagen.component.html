@@ -1,1 +1,27 @@
-<p>imagen works!</p>
+<div class="container-fluid d-flex justify-content-center align-items-center" style="height: calc(100vh - 80px);">
+  <div class="text-center">
+    <h1 class="text-white display-4 fw-bold mb-4">
+      PREDICCIÓN DE IMAGENES
+    </h1>
+    <button type="button" class="btn btn-primary btn-lg">Seleccionar Imagen</button>
+  </div>
+</div>
+
+
+<!-- <div class="container mt-5">
+  <h2 class="text-center">Image Upload and Prediction</h2>
+
+  <div class="form-group">
+    <label for="fileInput">Select Image</label>
+    <input type="file" id="fileInput" (change)="onFileSelected($event)" class="form-control" />
+  </div>
+
+  <button (click)="onUpload()" class="btn btn-primary mt-3">Upload and Predict</button>
+
+  <div *ngIf="response" class="mt-4">
+    <h4>Prediction Result:</h4>
+    <p><strong>Labels:</strong> {{ response.labels.join(', ') }}</p>
+    <p><strong>Confidences:</strong> {{ response.confidences.join(', ') }}</p>
+    <img [src]="response.predicted_image" alt="Predicted Image" class="img-fluid mt-2" />
+  </div>
+</div> -->

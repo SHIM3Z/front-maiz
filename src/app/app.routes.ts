@@ -5,8 +5,20 @@ import { TiempoRealComponent } from './pages/tiempo-real/tiempo-real.component';
 
 export const routes: Routes = [
   {
-    path: '',
-    loadComponent: () => import('./pages/inicio/inicio.component').then((m) =>m.InicioComponent),
-
+    path: 'inicio',
+    loadComponent: () => import('./pages/inicio/inicio.component').then((c) =>c.InicioComponent)
   },
+  {
+    path: 'imagen',
+    loadComponent: () => import('./pages/imagen/imagen.component').then((c) =>c.ImagenComponent)
+  },
+  {
+    path: 'treal',
+    loadComponent: () => import('./pages/tiempo-real/tiempo-real.component').then((c) =>c.TiempoRealComponent)
+  },
+  {
+    path: '',
+    redirectTo: '/inicio',
+    pathMatch: 'full'
+  }
 ];

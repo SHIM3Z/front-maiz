@@ -7,3 +7,9 @@
   font-size: 24px; /* Ajusta el tamaño del logo */
   font-weight: bold; /* Poner en negrita */
 }
+
+.router-link-active {
+  font-weight: bold;
+  color: #ffffff; /* Puedes cambiarlo por el color deseado */
+  border-bottom: 2px solid #ffffff; /* Agrega un borde inferior para indicar la selección */
+}
