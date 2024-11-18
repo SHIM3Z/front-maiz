@@ -8,7 +8,7 @@
     </div>
     <button (click)="uploadImage()" type="button" class="btn btn-primary btn-lg">Subir Imagen</button>
     <div *ngIf="imageBase64" class="mt-4">
-      <h2 class="text-white display-4 fw-bold mb-4">
+      <h2 class="text-success fw-bold mb-4">
         RESULTADO DE PREDICCIÓN
       </h2>
       <img [src]="'data:image/jpeg;base64,' + imageBase64" alt="Imagen procesada" />
