@@ -27,14 +27,18 @@ export class ImagenComponent {
 
     // Llamada al backend para procesar la imagen
     this.http.post<any>('http://127.0.0.1:8000/process_image/', formData)
-      .subscribe({
-        next: (response) => {
-          // Obtener la imagen en base64 de la respuesta
+    .subscribe({
+      next: (response) => {
+        console.log('Respuesta del servidor:', response);  // Ver la respuesta completa
+        if (response && response.image) {
           this.imageBase64 = response.image;
-        },
-        error: (err) => {
-          console.error('Error al subir la imagen:', err);
+        } else {
+          console.error('Respuesta inválida del servidor:', response);
         }
-      });
+      },
+      error: (err) => {
+        console.error('Error al subir la imagen:', err);
+      }
+    });
   }
 }

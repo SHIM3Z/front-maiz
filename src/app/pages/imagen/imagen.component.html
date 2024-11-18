@@ -3,36 +3,15 @@
     <h1 class="text-white display-4 fw-bold mb-4">
       PREDICCIÓN DE IMAGENES
     </h1>
-    <button type="button" class="btn btn-primary btn-lg">Seleccionar Imagen</button>
+    <div class="mb-4">
+      <input (change)="onFileChange($event)" class="form-control" type="file" id="formFile">
+    </div>
+    <button (click)="uploadImage()" type="button" class="btn btn-primary btn-lg">Subir Imagen</button>
+    <div *ngIf="imageBase64" class="mt-4">
+      <h2 class="text-white display-4 fw-bold mb-4">
+        RESULTADO DE PREDICCIÓN
+      </h2>
+      <img [src]="'data:image/jpeg;base64,' + imageBase64" alt="Imagen procesada" />
+    </div>
   </div>
 </div>
-
-
-<!-- app.component.html -->
-<div>
-  <h1>Subir Imagen</h1>
-  <input type="file" (change)="onFileChange($event)" />
-  <button (click)="uploadImage()">Subir Imagen</button>
-
-  <h2>Imagen Procesada</h2>
-  <img *ngIf="imageBase64" [src]="'data:image/png;base64,' + imageBase64" alt="Imagen Procesada" />
-</div>
-
-
-<!-- <div class="container mt-5">
-  <h2 class="text-center">Image Upload and Prediction</h2>
-
-  <div class="form-group">
-    <label for="fileInput">Select Image</label>
-    <input type="file" id="fileInput" (change)="onFileSelected($event)" class="form-control" />
-  </div>
-
-  <button (click)="onUpload()" class="btn btn-primary mt-3">Upload and Predict</button>
-
-  <div *ngIf="response" class="mt-4">
-    <h4>Prediction Result:</h4>
-    <p><strong>Labels:</strong> {{ response.labels.join(', ') }}</p>
-    <p><strong>Confidences:</strong> {{ response.confidences.join(', ') }}</p>
-    <img [src]="response.predicted_image" alt="Predicted Image" class="img-fluid mt-2" />
-  </div>
-</div> -->
