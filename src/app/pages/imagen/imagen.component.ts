@@ -26,7 +26,8 @@ export class ImagenComponent {
     formData.append('file', this.selectedFile);
 
     // Llamada al backend para procesar la imagen
-    this.http.post<any>('http://127.0.0.1:8000/process_image/', formData)
+    // this.http.post<any>('http://127.0.0.1:8000/process_image/', formData)
+    this.http.post<any>('https://ldzcc7vk-8000.brs.devtunnels.ms/process_image/', formData)
     .subscribe({
       next: (response) => {
         console.log('Respuesta del servidor:', response);  // Ver la respuesta completa
