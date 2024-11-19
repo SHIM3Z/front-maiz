@@ -1,23 +1,31 @@
-<div class="container-fluid " style="height: calc(100vh - 120px);">
-  <div class="text-center">
-    <h1 class="text-white display-4 fw-bold mb-4">
-      PREDICCIÓN DE IMÁGENES
-    </h1>
-    <div class="mb-4">
-      <input (change)="onFileChange($event)" class="form-control" type="file" id="formFile">
-    </div>
-    <button (click)="uploadImage()" type="button" class="btn btn-primary btn-lg">Subir Imagen</button>
+<div class="text-center">
+  <h1 class="text-white display-4 fw-bold mb-4">PREDICCIÓN DE IMÁGENES</h1>
+  <div class="mb-4">
+    <input
+      (change)="onFileChange($event)"
+      class="form-control"
+      type="file"
+      id="formFile"
+      accept=".jpg,.jpeg,.png"
+    />
   </div>
 
-  <!-- Contenedor para el resultado -->
-  <div *ngIf="imageBase64" class="mt-5 text-center">
-    <h2 class="text-success fw-bold mb-4">
-      RESULTADO DE PREDICCIÓN
-    </h2>
-    <img [src]="'data:image/jpeg;base64,' + imageBase64" alt="Imagen procesada" class="img-fluid" />
-  </div>
+  <button
+    (click)="uploadImage()"
+    [disabled]="!selectedFile || isLoading"
+    type="button"
+    class="btn btn-primary btn-lg"
+  >
+    {{ isLoading ? "Procesando..." : "Subir Imagen" }}
+  </button>
 </div>
 
-
-
-
+<!-- Contenedor para el resultado -->
+<div *ngIf="imageBase64" class="mt-5 text-center">
+  <h2 class="text-success fw-bold mb-4">RESULTADO DE PREDICCIÓN</h2>
+  <img
+    [src]="'data:image/jpeg;base64,' + imageBase64"
+    alt="Imagen procesada"
+    class="img-fluid"
+  />
+</div>

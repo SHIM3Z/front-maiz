@@ -25,4 +25,21 @@
 		transform: translateY(200px);
 	}
 } */
+@import 'ngx-toastr/toastr';
 
+.toast-warning {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.toast-success {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
