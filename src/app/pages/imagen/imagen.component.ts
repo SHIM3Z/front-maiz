@@ -15,17 +15,14 @@ interface ImageProcessResponse {
   standalone: true,
   imports: [CommonModule],
   templateUrl: './imagen.component.html',
-  styleUrl: './imagen.component.css'
+  styleUrl: './imagen.component.css',
 })
 export class ImagenComponent {
   imageBase64: string | null = null;
   selectedFile: File | null = null;
   isLoading = false;
 
-  constructor(
-    private http: HttpClient,
-    private toastr: ToastrService
-  ) { }
+  constructor(private http: HttpClient, private toastr: ToastrService) {}
 
   onFileChange(event: any) {
     const file = event.target.files[0];
@@ -42,7 +39,10 @@ export class ImagenComponent {
       }
 
       if (file.size > maxSize) {
-        this.toastr.error('El archivo es demasiado grande (máximo 5MB)', 'Error');
+        this.toastr.error(
+          'El archivo es demasiado grande (máximo 5MB)',
+          'Error'
+        );
         event.target.value = null; // Limpiar selección
         return;
       }
@@ -54,7 +54,10 @@ export class ImagenComponent {
   uploadImage() {
     // Validaciones múltiples
     if (!this.selectedFile) {
-      this.toastr.warning('No se ha seleccionado ningún archivo', 'Advertencia');
+      this.toastr.warning(
+        'No se ha seleccionado ningún archivo',
+        'Advertencia'
+      );
       return;
     }
 
@@ -72,15 +75,15 @@ export class ImagenComponent {
     this.isLoading = true;
 
     // Configurar URL
-    // const apiUrl = 'http://127.0.0.1:8000/process_image/';
-    const apiUrl = 'https://ldzcc7vk-8000.brs.devtunnels.ms/process_image/';
-
+    const apiUrl = 'http://127.0.0.1:8000/process_image/';
+    // const apiUrl = 'https://ldzcc7vk-8000.brs.devtunnels.ms/process_image/';
 
     // Mostrar toast de carga
     this.toastr.info('Procesando imagen...', 'Espere');
 
     // Llamada al backend
-    this.http.post<ImageProcessResponse>(apiUrl, formData)
+    this.http
+      .post<ImageProcessResponse>(apiUrl, formData)
       .pipe(
         // Manejo de errores personalizado
         catchError((error: HttpErrorResponse) => {
@@ -110,7 +113,7 @@ export class ImagenComponent {
           } else if (response && response.error) {
             this.toastr.error(response.error, 'Error en el procesamiento');
           }
-        }
+        },
       });
   }
 }
