@@ -75,7 +75,7 @@ export class ImagenComponent {
     this.isLoading = true;
 
     // Configurar URL
-    const apiUrl = 'http://127.0.0.1:8000/process_image/';
+    const apiUrl = 'https://back-maiz.onrender.com/process_image/';
     // const apiUrl = 'https://ldzcc7vk-8000.brs.devtunnels.ms/process_image/';
 
     // Mostrar toast de carga
