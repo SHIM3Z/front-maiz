@@ -1,9 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { catchError, finalize } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { CornService } from '../../core/services/maiz.service';
 
 interface ImageProcessResponse {
   image?: string;
@@ -22,7 +20,7 @@ export class ImagenComponent {
   selectedFile: File | null = null;
   isLoading = false;
 
-  constructor(private http: HttpClient, private toastr: ToastrService) {}
+  constructor(private toast: ToastrService, private cornService: CornService) {}
 
   onFileChange(event: any) {
     const file = event.target.files[0];
@@ -33,13 +31,13 @@ export class ImagenComponent {
       const maxSize = 5 * 1024 * 1024; // 5MB
 
       if (!allowedTypes.includes(file.type)) {
-        this.toastr.error('Tipo de archivo no permitido', 'Error');
+        this.toast.error('Tipo de archivo no permitido', 'Error');
         event.target.value = null; // Limpiar selección
         return;
       }
 
       if (file.size > maxSize) {
-        this.toastr.error(
+        this.toast.error(
           'El archivo es demasiado grande (máximo 5MB)',
           'Error'
         );
@@ -54,66 +52,66 @@ export class ImagenComponent {
   uploadImage() {
     // Validaciones múltiples
     if (!this.selectedFile) {
-      this.toastr.warning(
-        'No se ha seleccionado ningún archivo',
-        'Advertencia'
-      );
+      this.toast.warning('No se ha seleccionado ningún archivo', 'Advertencia');
       return;
     }
 
     // Validación adicional por si acaso
     if (this.isLoading) {
-      this.toastr.warning('Ya se está procesando una imagen', 'Espere');
+      this.toast.warning('Ya se está procesando una imagen', 'Espere');
       return;
     }
-
-    // Preparar datos
-    const formData = new FormData();
-    formData.append('file', this.selectedFile);
 
     // Deshabilitar botón y mostrar loading
     this.isLoading = true;
 
-    // Configurar URL
-    const apiUrl = 'https://back-maiz.onrender.com/process_image/';
-    // const apiUrl = 'https://ldzcc7vk-8000.brs.devtunnels.ms/process_image/';
-
     // Mostrar toast de carga
-    this.toastr.info('Procesando imagen...', 'Espere');
+    this.toast.info('Procesando imagen...', 'Espere');
 
     // Llamada al backend
-    this.http
-      .post<ImageProcessResponse>(apiUrl, formData)
-      .pipe(
-        // Manejo de errores personalizado
-        catchError((error: HttpErrorResponse) => {
-          let errorMessage = 'Error desconocido';
+    this.cornService.processImage(this.selectedFile).subscribe({
+      next: (response) => {
+        if (response && response.image) {
+          this.imageBase64 = response.image;
+          this.toast.success('Imagen procesada exitosamente', 'Éxito');
+        }
+      },
+      error: (error) => {
+        this.toast.error('Error en el procesamiento de la imagen', 'Error');
+      },
+      complete: () => {
+        this.isLoading = false;
+      },
+    });
+  }
 
-          if (error.error instanceof ErrorEvent) {
-            // Error del lado del cliente
-            errorMessage = `Error de red: ${error.error.message}`;
-          } else {
-            // Error del lado del servidor
-            errorMessage = `Error del servidor: ${error.status} - ${error.statusText}`;
-          }
+  uploadImage2() {
+    // Validaciones múltiples
+    if (!this.selectedFile) {
+      this.toast.warning('No se ha seleccionado ningún archivo', 'Advertencia');
+      return;
+    }
 
-          this.toastr.error(errorMessage, 'Error en la subida');
-          return of(null); // Continuar el flujo
-        }),
-        // Asegurar que se ejecute independientemente del resultado
-        finalize(() => {
-          this.isLoading = false;
-        })
-      )
-      .subscribe({
-        next: (response) => {
-          if (response && response.image) {
-            this.imageBase64 = response.image;
-            this.toastr.success('Imagen procesada exitosamente', 'Éxito');
-          } else if (response && response.error) {
-            this.toastr.error(response.error, 'Error en el procesamiento');
-          }
-        },
-      });
+    // Validación adicional por si acaso
+    if (this.isLoading) {
+      this.toast.warning('Ya se está procesando una imagen', 'Espere');
+      return;
+    }
+    this.isLoading = true;
+
+    this.cornService.processDirectImage(this.selectedFile).subscribe({
+      next: (response) => {
+        const imageUrl = URL.createObjectURL(response);
+        this.imageBase64 = imageUrl;
+        // Aquí puedes manejar la respuesta del backend
+        this.toast.success('Imagen procesada exitosamente', 'Éxito');
+      },
+      error: (error) => {
+        this.toast.error('Error en el procesamiento de la imagen', 'Error');
+      },
+      complete: () => {
+        this.isLoading = false;
+      },
+    });
   }
 }

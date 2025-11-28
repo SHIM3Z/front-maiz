@@ -11,7 +11,7 @@
   </div>
 
   <button
-    (click)="uploadImage()"
+    (click)="uploadImage2()"
     [disabled]="!selectedFile || isLoading"
     type="button"
     class="btn btn-primary btn-lg"
@@ -23,9 +23,11 @@
 <!-- Contenedor para el resultado -->
 <div *ngIf="imageBase64" class="mt-5 text-center">
   <h2 class="text-success fw-bold mb-4">RESULTADO DE PREDICCIÓN</h2>
-  <img
+  <!-- <img
     [src]="'data:image/jpeg;base64,' + imageBase64"
     alt="Imagen procesada"
     class="img-fluid"
-  />
+  /> -->
+
+  <img [src]="imageBase64" alt="Imagen procesada" class="img-fluid" />
 </div>
