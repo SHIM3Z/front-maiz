@@ -1,0 +1,75 @@
+<div
+  class="flex flex-col items-center justify-center min-h-[60vh] text-center px-4 animate-fade-in pt-12"
+>
+  <div
+    class="p-8 rounded-full bg-white/5 mb-8 shadow-2xl border-4 border-dashed animate-pulse-slow"
+    [style.borderColor]="colors.primary"
+  >
+    <div [style.color]="colors.accent">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="80"
+        height="80"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path
+          d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"
+        />
+        <path d="M12 9v4" />
+        <path d="M12 17h.01" />
+      </svg>
+    </div>
+  </div>
+
+  <h1
+    class="text-8xl font-extrabold mb-2 tracking-tighter drop-shadow-lg"
+    [style.color]="colors.primary"
+  >
+    404
+  </h1>
+
+  <h2 class="text-3xl font-bold mb-6" [style.color]="colors.text">
+    Cosecha en Proceso
+  </h2>
+
+  <div
+    class="h-1 w-24 rounded-full mb-8"
+    [style.backgroundColor]="colors.accent"
+  ></div>
+
+  <p
+    class="text-xl opacity-80 max-w-lg mb-10 leading-relaxed"
+    [style.color]="colors.text"
+  >
+    ¡Ups! Has llegado a un campo que aún estamos sembrando. Nuestros ingenieros
+    están desarrollando este apartado de MaizAI.
+  </p>
+
+  <button
+    (click)="goBack()"
+    class="px-8 py-4 rounded-full font-bold shadow-xl transition-all hover:scale-105 hover:shadow-2xl flex items-center gap-3 text-lg"
+    [style.backgroundColor]="colors.accent"
+    [style.color]="colors.bg"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path d="m12 19-7-7 7-7" />
+      <path d="M19 12H5" />
+    </svg>
+    Volver al Inicio
+  </button>
+</div>

@@ -1,3 +1,3 @@
 export const environment = {
-  API_URL: 'https://back-maiz.onrender.com',
+  API_URL: 'http://localhost:8000',
 };

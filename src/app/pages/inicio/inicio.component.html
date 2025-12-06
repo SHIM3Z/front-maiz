@@ -1,3 +1,131 @@
-<h1 class="text-center text-white display-4 fw-bold">
-  Web desarrollada para la predicción de imágenes
-</h1>
+<main class="animate-fade-in">
+  <div class="min-h-screen flex flex-col">
+    <header
+      class="flex-1 flex flex-col justify-center items-center text-center px-4 py-20"
+    >
+      <div class="max-w-4xl mx-auto space-y-6 animate-fade-in-up">
+        <span
+          class="px-3 py-1 rounded-full text-sm font-semibold tracking-wide uppercase"
+          [style.backgroundColor]="colors.card"
+          [style.color]="colors.accent"
+        >
+          Inteligencia Artificial Agrícola
+        </span>
+        <h1
+          class="text-5xl md:text-7xl font-extrabold leading-tight"
+          [style.color]="colors.text"
+        >
+          El Futuro del Grano <br />
+          <span [style.color]="colors.primary">Analizado al Instante</span>
+        </h1>
+        <p
+          class="text-xl md:text-2xl max-w-2xl mx-auto opacity-90"
+          [style.color]="colors.text"
+        >
+          Maximiza tu cosecha con MaizAI. Detecta enfermedades y calidad usando
+          IA.
+        </p>
+        <div class="pt-8">
+          <button
+            (click)="navigate('prediction')"
+            class="px-8 py-4 rounded-lg text-xl font-bold flex items-center gap-3 mx-auto shadow-xl hover:shadow-2xl transition-all hover:-translate-y-1"
+            [style.backgroundColor]="colors.accent"
+            [style.color]="colors.bg"
+          >
+            Comenzar Análisis →
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="py-20 px-4" [style.backgroundColor]="colors.card">
+      <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Análisis Rápido -->
+        <div
+          class="p-8 rounded-2xl shadow-lg hover:bg-opacity-90 transition-colors"
+          [style.backgroundColor]="colors.bg"
+        >
+          <div class="mb-4" [style.color]="colors.accent">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="40"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-2" [style.color]="colors.text">
+            Análisis Rápido
+          </h3>
+          <p class="opacity-80" [style.color]="colors.text">
+            Resultados en milisegundos para toma de decisiones en campo.
+          </p>
+        </div>
+
+        <!-- Precisión Clínica -->
+        <div
+          class="p-8 rounded-2xl shadow-lg hover:bg-opacity-90 transition-colors"
+          [style.backgroundColor]="colors.bg"
+        >
+          <div class="mb-4" [style.color]="colors.accent">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="40"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-2" [style.color]="colors.text">
+            Precisión Clínica
+          </h3>
+          <p class="opacity-80" [style.color]="colors.text">
+            Algoritmos entrenados con millones de muestras de granos.
+          </p>
+        </div>
+
+        <!-- Reportes Detallados -->
+        <div
+          class="p-8 rounded-2xl shadow-lg hover:bg-opacity-90 transition-colors"
+          [style.backgroundColor]="colors.bg"
+        >
+          <div class="mb-4" [style.color]="colors.accent">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="40"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="18" x2="18" y1="20" y2="10" />
+              <line x1="12" x2="12" y1="20" y2="4" />
+              <line x1="6" x2="6" y1="20" y2="14" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-2" [style.color]="colors.text">
+            Reportes Detallados
+          </h3>
+          <p class="opacity-80" [style.color]="colors.text">
+            Obtén datos sobre humedad, daños y clasificación.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>

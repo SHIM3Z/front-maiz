@@ -1,8 +1,10 @@
-<div class="d-flex flex-column vh-100">
+<div
+  class="min-h-screen flex flex-col font-sans selection:bg-pink-500 selection:text-white"
+  [style.backgroundColor]="colors.bg"
+>
   <app-navbar></app-navbar>
-  <div
-    class="container-fluid d-flex justify-content-center align-items-center flex-grow-1"
-  >
+  <div class="pt-16 flex-1">
     <router-outlet></router-outlet>
   </div>
+  <app-footer></app-footer>
 </div>
